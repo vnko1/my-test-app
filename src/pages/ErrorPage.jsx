@@ -1,4 +1,4 @@
-import ErrorPath from "../components/ErrorPath/ErrorPath";
+import ErrorPath from "../components/errorPath/ErrorPath";
 
 const ErrorPage = () => <ErrorPath />;
 
