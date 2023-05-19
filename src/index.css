@@ -43,6 +43,10 @@ p {
   color: #ebd8ff;
 }
 
+ul {
+  list-style: none;
+}
+
 button {
   border-radius: 10.3108px;
   border: none;

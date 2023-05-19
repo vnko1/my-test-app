@@ -1,13 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage";
-import SharedLayout from "./sharedLayou/sharedLayout";
+import SharedLayout from "./sharedLayout/sharedLayout";
+import UsersPage from "../pages/UsersPage";
 
 const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<p>home</p>} />
-        <Route path="" element={<p>users</p>} />
+        <Route index element={<h1>home</h1>} />
+        <Route path="users" element={<UsersPage />} />
       </Route>
       <Route path="*" element={<ErrorPage />} />
     </Routes>
