@@ -1,24 +1,23 @@
-import { useEffect } from "react";
-import { useFetchUsersQuery } from "../../redux/index";
+// import { useFetchUsersQuery } from "../../redux/index";
 import { useUsers } from "../../services/usersContext/constants";
 import UserCard from "../userCard/UserCard";
 
 const UserCardsList = () => {
-  const { page, users, setUsers } = useUsers();
-  const { data, isSuccess, isFetching } = useFetchUsersQuery({
-    page,
-  });
+  const { data, isSuccess } = useUsers();
+  // const { data, isSuccess } = useFetchUsersQuery({
+  //   page,
+  // });
 
-  useEffect(() => {
-    if (!isFetching && isSuccess) {
-      setUsers((state) => [...state, ...data]);
-    }
-  }, [data, isFetching, isSuccess, setUsers]);
+  // useEffect(() => {
+  //   if (!isFetching && isSuccess) {
+  //     setUsers((state) => [...state, ...data]);
+  //   }
+  // }, [data, isFetching, isSuccess, setUsers]);
 
   return (
     <ul>
       {isSuccess &&
-        users.map(({ id, follower, avatar, tweets, isFollow, user }) => (
+        data.map(({ id, follower, avatar, tweets, isFollow, user }) => (
           <li key={id}>
             <UserCard
               follower={follower}
