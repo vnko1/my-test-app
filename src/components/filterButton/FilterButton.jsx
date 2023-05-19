@@ -1,13 +1,4 @@
-import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import { useUsers } from "../../services/usersContext/constants";
-
-const FilterButton = () => {
-  const { setQuery, refetch, isSuccess } = useUsers();
-
-  const [searchParams, setSearchParams] = useSearchParams();
-  const q = searchParams.get("filter") ?? "";
-
+const FilterButton = ({ setSearchParams }) => {
   //   useEffect(() => {
   //     if (isSuccess) {
   //     }
@@ -17,8 +8,8 @@ const FilterButton = () => {
     if (filterType === "all") setSearchParams({});
     if (filterType === "follow") setSearchParams({ filter: false });
     if (filterType === "following") setSearchParams({ filter: true });
-    setQuery(q);
-    refetch();
+
+    // refetch();
   };
 
   return (
