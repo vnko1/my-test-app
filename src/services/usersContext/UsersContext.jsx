@@ -3,7 +3,7 @@ import { UsersContext } from "./constants";
 import { useState } from "react";
 
 const UsersProvider = ({ children }) => {
-  const [users, setUsers] = useState(null);
+  const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
 
   return (

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const usersApi = createApi({
-  reducerPath: "users",
+  reducerPath: "usersApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://644fa705ba9f39c6ab68c233.mockapi.io/",
   }),
@@ -10,6 +10,15 @@ export const usersApi = createApi({
     fetchUsers: build.query({
       query: (page = 1) => `users?p=${page}&l=6`,
       providesTags: ["Users"],
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName;
+      },
+      merge: (currentCache, newItems) => {
+        currentCache.push(...newItems);
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
+      },
     }),
     fetchAllUsers: build.query({
       query: () => `users`,
