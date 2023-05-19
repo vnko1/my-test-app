@@ -5,7 +5,9 @@ import UserCard from "../userCard/UserCard";
 
 const UserCardsList = () => {
   const { page, users, setUsers } = useUsers();
-  const { data, isSuccess, isFetching } = useFetchUsersQuery(page);
+  const { data, isSuccess, isFetching } = useFetchUsersQuery({
+    page,
+  });
 
   useEffect(() => {
     if (!isFetching && isSuccess) {
