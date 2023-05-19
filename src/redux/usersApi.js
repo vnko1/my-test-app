@@ -13,9 +13,9 @@ export const usersApi = createApi({
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
       },
-      merge: (currentCache, newItems) => {
-        currentCache.push(...newItems);
-      },
+      // merge: (currentCache, newItems) => {
+      //   currentCache.push(...newItems);
+      // },
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
       },
@@ -34,7 +34,11 @@ export const usersApi = createApi({
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: ["Users"],
+      invalidatesTags: (result, error, id) => [
+        { type: "Users", id },
+        { type: "Users", id: "PARTIAL-LIST" },
+      ],
+      // invalidatesTags: ["Users"],
     }),
   }),
 });
