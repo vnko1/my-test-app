@@ -1,9 +1,12 @@
 // import { useFetchUsersQuery } from "../../redux/index";
+import { useSearchParams } from "react-router-dom";
 import { useUsers } from "../../services/usersContext/constants";
 import UserCard from "../userCard/UserCard";
+import { useEffect } from "react";
 
 const UserCardsList = () => {
-  const { data, isSuccess } = useUsers();
+  const { data, isSuccess, setQuery } = useUsers();
+
   // const { data, isSuccess } = useFetchUsersQuery({
   //   page,
   // });
