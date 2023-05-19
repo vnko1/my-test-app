@@ -5,15 +5,25 @@ export const usersApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://644fa705ba9f39c6ab68c233.mockapi.io/",
   }),
-  tagTypes: ["Users"],
+  tagTypes: ["Users", "FiltredUsers"],
   endpoints: (build) => ({
     fetchUsers: build.query({
-      query: ({ page = 1, query = "" }) =>
-        `users?p=${page}&l=6&filter=${query}`,
+      query: (page = 1) => `users?p=${page}&l=6`,
       providesTags: ["Users"],
-      serializeQueryArgs: ({ endpointName }) => {
-        return endpointName;
+      serializeQueryArgs: ({ endpointName }) => endpointName,
+      merge: (currentCache, newItems) => {
+        currentCache.push(...newItems);
       },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
+      },
+    }),
+
+    fetchFiltredUsers: build.query({
+      query: ({ page = 1, query }) =>
+        `users?p=${page}&l=6${query ? `&filter=${query}` : ""}`,
+      providesTags: ["FiltredUsers"],
+      serializeQueryArgs: ({ endpointName }) => endpointName,
       merge: (currentCache, newItems) => {
         currentCache.push(...newItems);
       },
@@ -31,12 +41,18 @@ export const usersApi = createApi({
       invalidatesTags: (result, error, id) => [
         { type: "Users", id },
         { type: "Users", id: "PARTIAL-LIST" },
+        { type: "FiltredUsers", id },
+        { type: "FiltredUsers", id: "PARTIAL-LIST" },
       ],
     }),
   }),
 });
 
-export const { useFetchUsersQuery, useUpdateUserMutation } = usersApi;
+export const {
+  useLazyFetchUsersQuery,
+  useLazyFetchFiltredUsersQuery,
+  useUpdateUserMutation,
+} = usersApi;
 
 // export const usersApi = createApi({
 //   reducerPath: "usersApi",

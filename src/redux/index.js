@@ -1,4 +1,8 @@
 export { store } from "./store";
-export { useFetchUsersQuery, useUpdateUserMutation } from "./usersApi";
-// export { getUsersByPagination } from "./usersSlice";
-// export { selectUsers } from "./selectors";
+export {
+  useLazyFetchUsersQuery,
+  useLazyFetchFiltredUsersQuery,
+  useUpdateUserMutation,
+} from "./usersApi";
+export { refreshAllUsers, refreshFiltredUsers } from "./usersSlice";
+export { selectUsers } from "./selectors";

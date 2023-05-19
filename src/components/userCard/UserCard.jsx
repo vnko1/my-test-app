@@ -25,6 +25,7 @@ const UserCard = ({ follower, id, avatar, tweets, isFollow, user }) => {
 
   return (
     <div>
+      <p>{user}</p>
       <p>
         <span>{tweets}</span> tweets
       </p>

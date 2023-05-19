@@ -15,7 +15,10 @@ const UsersPage = () => {
   );
 
   useEffect(() => {
-    if (!filter) setPage(1);
+    if (!filter) {
+      setPage(1);
+      return;
+    }
 
     setQuery(filter);
     setPage(1);
