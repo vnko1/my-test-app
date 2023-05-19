@@ -1,8 +1,4 @@
-import {
-  useFetchUsersQuery,
-  useFetchAllUsersQuery,
-  useFetchFiltredUsersQuery,
-} from "../redux/index";
+import { useFetchUsersQuery } from "../redux/index";
 import { fetchType } from "../services/constants";
 
 fetchType;
