@@ -3,7 +3,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
 const PaginationButtons = () => {
-  const { setPage, data } = useUsers();
+  const { page, setPage, data } = useUsers();
 
   const totalPage = Math.ceil(data?.count / PAGELIMIT);
 
@@ -12,6 +12,7 @@ const PaginationButtons = () => {
   return (
     <Stack spacing={2}>
       <Pagination
+        page={page}
         count={totalPage}
         size="large"
         showFirstButton

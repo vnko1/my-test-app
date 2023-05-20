@@ -1,6 +1,6 @@
 import UserCardsList from "../components/userCardsList/UserCardsList";
 import Pagination from "../components/paginationButtons/PaginationButtons";
-import FilterButton from "../components/filterButton/FilterButton";
+import Filters from "../components/filters/Filters";
 import { useUsers } from "../services";
 
 const UsersPage = () => {
@@ -8,7 +8,7 @@ const UsersPage = () => {
 
   return (
     <>
-      <FilterButton />
+      <Filters />
       <UserCardsList />
       {data?.count && <Pagination />}
     </>

@@ -1,2 +1,7 @@
 const PAGELIMIT = 3;
-export { PAGELIMIT };
+const FILTERMODE = {
+  all: "all",
+  follow: "follow",
+  following: "following",
+};
+export { PAGELIMIT, FILTERMODE };

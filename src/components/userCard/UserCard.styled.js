@@ -62,8 +62,7 @@ const FollowersText = styled.p`
 const Button = styled.button`
   display: block;
   margin: 26px auto 0;
-  transition: background-color 0.25s;
-  background-color: ${({ isFollowing }) => (isFollowing ? "#5CD3A8" : null)};
+
   border-radius: 10.3108px;
   border: none;
   width: 196px;
@@ -73,8 +72,11 @@ const Button = styled.button`
   line-height: 22px;
   font-family: inherit;
   text-transform: uppercase;
-  background-color: #ebd8ff;
+
   color: #373737;
+  transition: background-color 0.25s;
+  background-color: ${({ isFollowing }) =>
+    isFollowing ? "#5CD3A8" : "#ebd8ff"};
   box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   transition: box-shadow 0.25s;
