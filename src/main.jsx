@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./redux/index";
 import App from "./App.jsx";
-import UsersProvider from "./services/usersContext/UsersContext.jsx";
+import UsersProvider from "./components/UsersContext";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -5,28 +5,19 @@ export const usersApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://644fa705ba9f39c6ab68c233.mockapi.io/",
   }),
-  tagTypes: ["Users", "FiltredUsers"],
+  tagTypes: ["Users"],
   endpoints: (build) => ({
     fetchUsers: build.query({
-      query: (page = 1) => `users?p=${page}&l=6`,
-      providesTags: ["Users"],
+      query: ({ page = 1, query = "" }) =>
+        `users?p=${page < 1 ? 1 : page}&l=3&filter=${query}`,
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Users", id })),
+              { type: "Users", id: "PARTIAL-LIST" },
+            ]
+          : [{ type: "Users", id: "PARTIAL-LIST" }],
       serializeQueryArgs: ({ endpointName }) => endpointName,
-      merge: (currentCache, newItems) => {
-        currentCache.push(...newItems);
-      },
-      forceRefetch({ currentArg, previousArg }) {
-        return currentArg !== previousArg;
-      },
-    }),
-
-    fetchFiltredUsers: build.query({
-      query: ({ page = 1, query }) =>
-        `users?p=${page}&l=6${query ? `&filter=${query}` : ""}`,
-      providesTags: ["FiltredUsers"],
-      serializeQueryArgs: ({ endpointName }) => endpointName,
-      merge: (currentCache, newItems) => {
-        currentCache.push(...newItems);
-      },
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
       },
@@ -41,61 +32,9 @@ export const usersApi = createApi({
       invalidatesTags: (result, error, id) => [
         { type: "Users", id },
         { type: "Users", id: "PARTIAL-LIST" },
-        { type: "FiltredUsers", id },
-        { type: "FiltredUsers", id: "PARTIAL-LIST" },
       ],
     }),
   }),
 });
 
-export const {
-  useLazyFetchUsersQuery,
-  useLazyFetchFiltredUsersQuery,
-  useUpdateUserMutation,
-} = usersApi;
-
-// export const usersApi = createApi({
-//   reducerPath: "usersApi",
-//   baseQuery: fetchBaseQuery({
-//     baseUrl: "https://644fa705ba9f39c6ab68c233.mockapi.io/",
-//   }),
-//   tagTypes: ["Users"],
-//   endpoints: (build) => ({
-//     fetchUsers: build.query({
-//       query: ({ page = 1, query = "" }) => {
-//         console.log(query);
-//         return `users?p=${page}&l=6&filter=${query}`;
-//       },
-//       providesTags: ["Users"],
-//       serializeQueryArgs: ({ endpointName }) => {
-//         return endpointName;
-//       },
-//       // merge: (currentCache, newItems) => {
-//       //   currentCache.push(...newItems);
-//       // },
-//       forceRefetch({ currentArg, previousArg }) {
-//         return currentArg !== previousArg;
-//       },
-//     }),
-//     fetchAllUsers: build.query({
-//       query: () => `users`,
-//       providesTags: ["Users"],
-//     }),
-//     fetchFiltredUsers: build.query({
-//       query: (filterValue) => `users?filter=${filterValue}`,
-//       providesTags: ["Users"],
-//     }),
-//     updateUser: build.mutation({
-//       query: ({ id, data }) => ({
-//         url: `users/${id}`,
-//         method: "PUT",
-//         body: data,
-//       }),
-//       invalidatesTags: (result, error, id) => [
-//         { type: "Users", id },
-//         { type: "Users", id: "PARTIAL-LIST" },
-//       ],
-//       // invalidatesTags: ["Users"],
-//     }),
-//   }),
-// });
+export const { useFetchUsersQuery, useUpdateUserMutation } = usersApi;

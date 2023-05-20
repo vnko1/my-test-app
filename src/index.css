@@ -40,7 +40,9 @@ p {
   font-size: 20px;
   line-height: 24px;
   text-transform: uppercase;
+  text-align: center;
   color: #ebd8ff;
+  margin: 0;
 }
 
 ul {
@@ -50,6 +52,7 @@ ul {
 button {
   border-radius: 10.3108px;
   border: none;
+  width: 196px;
   padding: 14px 28px;
   font-weight: 600;
   font-size: 18px;
