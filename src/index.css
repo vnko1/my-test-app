@@ -15,19 +15,6 @@
 a {
   font-weight: 500;
   color: #ebd8ff;
-  text-decoration: none;
-}
-a:hover,
-a:focus {
-  color: #5cd3a8;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {

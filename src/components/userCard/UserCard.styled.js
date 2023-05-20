@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import bgImageUrl1x from "../../assets/pics/bgPicCard1x.png";
-import bgImageUrl2x from "../../assets/pics/bgPicCard2x.png";
 
 const Container = styled.div`
   position: relative;
@@ -15,11 +14,6 @@ const Container = styled.div`
   background-repeat: no-repeat;
 
   background-position: center top 36px, center;
-
-  @media screen and (min-resolution: 192dpi), (min-resolution: 2dppx) {
-    background-image: url(${bgImageUrl2x}),
-      linear-gradient(114.99deg, #471ca9 -0.99%, #5736a3 54.28%, #4b2a99 78.99%);
-  }
 `;
 
 const ImageWrapper = styled.div`
@@ -28,7 +22,7 @@ const ImageWrapper = styled.div`
 
   margin: 136px auto 0;
   border-radius: 50%;
-
+  background-color: #5736a3;
   border: 8px solid #ebd8ff;
   overflow: hidden;
   position: relative;
@@ -81,8 +75,8 @@ const Button = styled.button`
   cursor: pointer;
   transition: box-shadow 0.25s;
 
-  &:button:hover,
-  &:button:focus {
+  &:hover,
+  &:focus {
     box-shadow: 10px 5.43693px 3.43693px rgba(0, 0, 0, 0.25);
   }
 `;

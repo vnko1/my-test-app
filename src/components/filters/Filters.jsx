@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { FILTERMODE, useUsers } from "../../services";
+import { Box } from "@mui/material";
 
 const Filters = () => {
   const { setQuery, setPage } = useUsers();
@@ -33,7 +34,7 @@ const Filters = () => {
   };
 
   return (
-    <>
+    <Box>
       <Button
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
@@ -64,23 +65,8 @@ const Filters = () => {
           show following
         </MenuItem>
       </Menu>
-    </>
+    </Box>
   );
 };
-
-// return (
-//   <>
-//     <button type="button" onClick={() => onHandleCLick("all")}>
-//       show all
-//     </button>
-//     <button type="button" onClick={() => onHandleCLick("follow")}>
-//       show follow
-//     </button>
-//     <button type="button" onClick={() => onHandleCLick("following")}>
-//       show following
-//     </button>
-//   </>
-// );
-// };
 
 export default Filters;

@@ -7,7 +7,7 @@ const UsersProvider = ({ children }) => {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
 
-  const { data, isSuccess, isFetching, isError, isLoading } =
+  const { data, isSuccess, isFetching, isError, error, isLoading } =
     useFetchUsersQuery({
       page,
       query,
@@ -24,6 +24,7 @@ const UsersProvider = ({ children }) => {
         isFetching,
         isError,
         isLoading,
+        error,
       }}
     >
       {children}
