@@ -7,7 +7,7 @@ const UserCardsList = () => {
   return (
     <ul style={{ display: "flex", gap: 100, flexWrap: "wrap" }}>
       {isSuccess &&
-        data.map(({ id, follower, avatar, tweets, isFollow, user }) => (
+        data.users.map(({ id, follower, avatar, tweets, isFollow, user }) => (
           <li key={id}>
             <UserCard
               follower={follower}
