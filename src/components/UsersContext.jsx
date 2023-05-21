@@ -8,11 +8,20 @@ const UsersProvider = ({ children }) => {
   const [queryType, setQueryType] = useState(QUERYTYPE.all.mode);
   const [page, setPage] = useState(1);
 
-  const { data, isSuccess, isFetching, isError, error, isLoading } =
-    useFetchUsersQuery({
-      page,
-      queryType,
-    });
+  const {
+    data,
+    currentData,
+    isSuccess,
+    isFetching,
+    isError,
+    error,
+    isLoading,
+    isUninitialized,
+    endpointName,
+  } = useFetchUsersQuery({
+    page,
+    queryType,
+  });
 
   return (
     <UsersContext.Provider
@@ -21,11 +30,14 @@ const UsersProvider = ({ children }) => {
         setPage,
         setQueryType,
         data,
+        currentData,
         isSuccess,
         isFetching,
         isError,
         isLoading,
         error,
+        isUninitialized,
+        endpointName,
       }}
     >
       {children}

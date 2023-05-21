@@ -2,10 +2,12 @@ import UserCard from "../userCard/UserCard";
 import Fade from "@mui/material/Fade";
 import Loader from "../loader/Loader";
 import Grid from "@mui/material/Unstable_Grid2";
+import QueryMessage from "../queryMessage/QueryMessage";
 import { useUsers } from "../../services";
 
 const UserCardsList = () => {
-  const { data, isSuccess, isFetching } = useUsers();
+  const { data, isSuccess } = useUsers();
+
   const renderItem = () => {
     return data.users.map(
       ({ id, follower, avatar, tweets, isFollow, user }) => (
@@ -22,6 +24,8 @@ const UserCardsList = () => {
       )
     );
   };
+
+  if (!data?.count) return <QueryMessage />;
   return (
     <>
       <Fade in={isSuccess} appear={true} timeout={500}>
@@ -35,7 +39,7 @@ const UserCardsList = () => {
           {isSuccess && renderItem()}
         </Grid>
       </Fade>
-      <Loader isFetching={isFetching} />
+      <Loader />
     </>
   );
 };

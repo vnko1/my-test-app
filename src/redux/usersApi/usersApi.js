@@ -11,6 +11,7 @@ export const usersApi = createApi({
     fetchUsers: build.query({
       query: ({ page = 1, queryType = "" }) =>
         `users?p=${page < 1 ? 1 : page}&l=${PAGELIMIT}${queryType}`,
+
       providesTags: (result) =>
         result
           ? [
@@ -18,6 +19,7 @@ export const usersApi = createApi({
               { type: "Users", id: "PARTIAL-LIST" },
             ]
           : [{ type: "Users", id: "PARTIAL-LIST" }],
+
       serializeQueryArgs: ({ endpointName }) => endpointName,
 
       forceRefetch({ currentArg, previousArg }) {
@@ -31,6 +33,7 @@ export const usersApi = createApi({
         method: "PUT",
         body: data,
       }),
+
       invalidatesTags: (result, error, id) => [
         { type: "Users", id },
         { type: "Users", id: "PARTIAL-LIST" },
