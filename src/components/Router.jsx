@@ -9,12 +9,8 @@ const Router = () => {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
-        <Route
-          path="tweets"
-          element={<TweetsPage />}
-          basename="/my-test-app/"
-        />
-        <Route path="*" element={<Page404 />} basename="/my-test-app/" />
+        <Route path="tweets" element={<TweetsPage />} />
+        <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>
   );
