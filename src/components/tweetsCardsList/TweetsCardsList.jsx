@@ -1,4 +1,4 @@
-import UserCard from "../userCard/UserCard";
+import UserCard from "../userCard/TweetCard";
 import Fade from "@mui/material/Fade";
 import Loader from "../loader/Loader";
 import Grid from "@mui/material/Unstable_Grid2";

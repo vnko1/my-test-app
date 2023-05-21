@@ -1,5 +1,10 @@
+import Container from "@mui/material/Container";
 import Home from "../components/home/Home";
 
-const HomePage = () => <Home />;
+const HomePage = () => (
+  <Container maxWidth={false} sx={{ maxWidth: 1480, pt: 20 }}>
+    <Home />
+  </Container>
+);
 
 export default HomePage;

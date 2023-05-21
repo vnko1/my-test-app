@@ -10,7 +10,7 @@ const Home = () => {
     <Box sx={{ pt: (theme) => theme.spacing(2) }}>
       <Paper
         sx={{
-          minHeight: 100,
+          minHeight: 200,
 
           pt: 10,
           color: (theme) => theme.palette.primary,

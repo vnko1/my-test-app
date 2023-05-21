@@ -11,6 +11,9 @@
   -webkit-text-size-adjust: 100%;
   box-sizing: border-box;
 }
+body {
+  height: 100%;
+}
 
 a {
   font-weight: 500;

@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Page404 from "../pages/Page404";
 import SharedLayout from "./sharedLayout/SharedLayout";
-import UsersPage from "../pages/UsersPage";
+import TweetsPage from "../pages/TweetsPage";
 import HomePage from "../pages/HomePage";
 
 const Router = () => {
@@ -9,7 +9,7 @@ const Router = () => {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
-        <Route path="tweets" element={<UsersPage />} />
+        <Route path="tweets" element={<TweetsPage />} />
       </Route>
       <Route path="*" element={<Page404 />} />
     </Routes>

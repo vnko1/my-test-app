@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import UserCardsList from "../components/userCardsList/UserCardsList";
+import Container from "@mui/material/Container";
+import TweetsCardsList from "../components/tweetsCardsList/TweetsCardsList";
 import Pagination from "../components/paginationButtons/PaginationButtons";
 import toast from "react-hot-toast";
 import ToastNotification from "../components/notification/ToastNotification";
@@ -18,15 +19,15 @@ const UsersPage = () => {
   }, [error, isError]);
 
   return (
-    <>
+    <Container maxWidth={false} sx={{ maxWidth: 1480, pt: 24 }}>
       {isSuccess && (
         <Box>
-          <UserCardsList />
+          <TweetsCardsList />
           <Pagination />
         </Box>
       )}
       <ToastNotification />
-    </>
+    </Container>
   );
 };
 

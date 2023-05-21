@@ -12,7 +12,7 @@ const ResponsiveAppBar = () => {
   const show = location.pathname.includes("tweets");
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar color="secondary" position="static">
+      <AppBar color="secondary" position="fixed">
         <Toolbar sx={{ justifyContent: "space-between" }}>
           <Stack
             direction={{ xs: "column", sm: "row" }}

@@ -10,7 +10,7 @@ import {
   TweetsText,
   FollowersText,
   Button,
-} from "./UserCard.styled";
+} from "./TweetCard.styled";
 import LogoIcon from "../svgComponents/LogoIcon";
 
 const UserCard = ({ follower, id, avatar, tweets, isFollow, user }) => {
