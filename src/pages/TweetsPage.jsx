@@ -1,10 +1,12 @@
 import { useEffect } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import Container from "@mui/material/Container";
+import Link from "@mui/material/Link";
 import TweetsCardsList from "../components/tweetsCardsList/TweetsCardsList";
-import Pagination from "../components/paginationButtons/PaginationButtons";
 import toast from "react-hot-toast";
 import ToastNotification from "../components/notification/ToastNotification";
 import Box from "@mui/material/Box";
+// import LoadMoreBtn from "../components/loadMoreButton/LoadMoreButton";
 import { useUsers } from "../services";
 
 const UsersPage = () => {
@@ -19,11 +21,18 @@ const UsersPage = () => {
   }, [error, isError]);
 
   return (
-    <Container maxWidth={false} sx={{ maxWidth: 1480, pt: 24 }}>
+    <Container maxWidth={false} sx={{ maxWidth: 1480, py: 16 }}>
+      <Link
+        component={RouterLink}
+        to="/"
+        underline="hover"
+        sx={{ textTransform: "uppercase" }}
+      >
+        GO BACK
+      </Link>
       {isSuccess && (
-        <Box>
+        <Box sx={{ mt: 2 }}>
           <TweetsCardsList />
-          <Pagination />
         </Box>
       )}
       <ToastNotification />

@@ -16,11 +16,11 @@ const Footer = () => {
         position: "fixed",
         zIndex: 2,
         bottom: 0,
+        left: 0,
         height: "auto",
         backgroundColor: "secondary.main",
         paddingTop: "1rem",
         paddingBottom: "1rem",
-        ml: -1,
       }}
     >
       <Container>

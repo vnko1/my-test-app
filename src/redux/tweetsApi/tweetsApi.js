@@ -2,26 +2,19 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { PAGELIMIT } from "../../services";
 
 export const tweetsApi = createApi({
-  reducerPath: "tweets",
+  reducerPath: "tweetsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://644fa705ba9f39c6ab68c233.mockapi.io/",
   }),
   tagTypes: ["Tweets"],
   endpoints: (build) => ({
     fetchTweets: build.query({
-      query: ({ page = 1, queryType = "" }) =>
-        `tweets?p=${page < 1 ? 1 : page}&l=${PAGELIMIT}${queryType.mode}`,
-
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.tweets.map(({ id }) => ({ type: "Tweets", id })),
-              { type: "Tweets", id: "PARTIAL-LIST" },
-            ]
-          : [{ type: "Tweets", id: "PARTIAL-LIST" }],
-
+      query: (page = 1) => `tweets?p=${page}&l=${PAGELIMIT}`,
       serializeQueryArgs: ({ endpointName }) => endpointName,
-
+      providesTags: ["Tweets"],
+      merge: (currentCache, newItems) => {
+        currentCache.tweets.push(...newItems.tweets);
+      },
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
       },
@@ -33,7 +26,6 @@ export const tweetsApi = createApi({
         method: "PUT",
         body: data,
       }),
-
       invalidatesTags: (result, error, id) => [
         { type: "Tweets", id },
         { type: "Tweets", id: "PARTIAL-LIST" },
