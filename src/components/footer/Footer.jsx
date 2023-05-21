@@ -11,7 +11,8 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        width: "100%",
+        flexGrow: 1,
+        width: 1,
         position: "fixed",
         zIndex: 2,
         bottom: 0,
@@ -19,6 +20,7 @@ const Footer = () => {
         backgroundColor: "secondary.main",
         paddingTop: "1rem",
         paddingBottom: "1rem",
+        ml: -1,
       }}
     >
       <Container>
