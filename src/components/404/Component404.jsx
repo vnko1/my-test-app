@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 const Component404 = () => {
   const navigate = useNavigate();

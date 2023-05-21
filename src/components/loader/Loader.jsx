@@ -3,7 +3,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useUsers } from "../../services";
 
 const Loader = () => {
-  const { isFetching } = useUsers();
+  const { isFetching, isLoading } = useUsers();
+
+  const show = isFetching || isLoading;
 
   return (
     <Backdrop
@@ -12,7 +14,7 @@ const Loader = () => {
         bgcolor: (theme) => theme.palette.background.default,
       }}
       style={{ opacity: 0.5 }}
-      open={isFetching}
+      open={show}
     >
       <CircularProgress color="primary" />
     </Backdrop>

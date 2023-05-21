@@ -1,4 +1,4 @@
-const PAGELIMIT = 6;
+const PAGELIMIT = 3;
 
 const QUERYTYPE = {
   all: { title: "all", mode: "" },

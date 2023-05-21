@@ -2,8 +2,8 @@ import { useState } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Box from "@mui/material/Box";
 import { QUERYTYPE, useUsers } from "../../services";
-import { Box } from "@mui/material";
 
 const Filters = () => {
   const { setQueryType, setPage } = useUsers();

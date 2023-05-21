@@ -1,6 +1,6 @@
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { Fade } from "@mui/material";
+import Fade from "@mui/material/Fade";
 import { PAGELIMIT, useUsers } from "../../services";
 
 const PaginationButtons = () => {

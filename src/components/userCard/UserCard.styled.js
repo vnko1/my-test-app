@@ -4,7 +4,6 @@ import bgImageUrl1x from "../../assets/pics/bgPicCard1x.png";
 const Container = styled.div`
   position: relative;
   width: 380px;
-  /* height: 460px; */
   background-image: url(${bgImageUrl1x}),
     linear-gradient(114.99deg, #471ca9 -0.99%, #5736a3 54.28%, #4b2a99 78.99%);
   box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);

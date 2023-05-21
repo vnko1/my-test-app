@@ -16,7 +16,7 @@ import LogoIcon from "../svgComponents/LogoIcon";
 const UserCard = ({ follower, id, avatar, tweets, isFollow, user }) => {
   const [isFollowing, setIsFollowing] = useState(isFollow);
   const [followersValue, setFollowersValue] = useState(follower);
-  const [trigger] = useUpdateTweetMutation();
+  const [trigger, { isFetching }] = useUpdateTweetMutation();
 
   const onHandleClick = () => {
     setFollowersValue((state) => (isFollowing ? (state -= 1) : (state += 1)));
@@ -48,7 +48,12 @@ const UserCard = ({ follower, id, avatar, tweets, isFollow, user }) => {
       <Line />
       <TweetsText>{formatedTweetsValue} tweets</TweetsText>
       <FollowersText>{formatedFollowersValue} followers</FollowersText>
-      <Button type="button" onClick={onHandleClick} isFollowing={isFollowing}>
+      <Button
+        type="button"
+        onClick={onHandleClick}
+        isFollowing={isFollowing}
+        disabled={isFetching}
+      >
         {isFollowing ? "following" : "follow"}
       </Button>
     </Container>

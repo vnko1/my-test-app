@@ -3,8 +3,8 @@ import UserCardsList from "../components/userCardsList/UserCardsList";
 import Pagination from "../components/paginationButtons/PaginationButtons";
 import toast from "react-hot-toast";
 import ToastNotification from "../components/notification/ToastNotification";
+import Box from "@mui/material/Box";
 import { useUsers } from "../services";
-import { Box } from "@mui/material";
 
 const UsersPage = () => {
   const { isSuccess, isError, error } = useUsers();

@@ -1,5 +1,5 @@
 import Router from "./components/Router";
-import { ThemeProvider } from "@mui/material/styles";
+import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import { theme } from "./theme/theme";
 
 const App = () => {
