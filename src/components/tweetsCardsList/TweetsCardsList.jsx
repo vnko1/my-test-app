@@ -5,6 +5,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import QueryMessage from "../queryMessage/QueryMessage";
 import { QUERYTYPE, useUsers } from "../../services";
 import { useCallback } from "react";
+import LoadMoreBtn from "../loadMoreButton/LoadMoreButton";
 
 const UserCardsList = () => {
   const { data, isSuccess, tweetsId, queryType } = useUsers();
@@ -50,6 +51,7 @@ const UserCardsList = () => {
           {isSuccess && renderItem()}
         </Grid>
       </Fade>
+      <LoadMoreBtn />
       <Loader />
     </>
   );

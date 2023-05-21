@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 const UsersProvider = ({ children }) => {
   const [queryType, setQueryType] = useState(QUERYTYPE.all);
   const [page, setPage] = useState(1);
+
   const tweetsId = useSelector(selectTweetsId);
 
   const {
