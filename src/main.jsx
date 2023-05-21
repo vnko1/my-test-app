@@ -11,12 +11,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <UsersProvider>
-        <BrowserRouter>
+        <BrowserRouter basename="/my-test-app">
           <App />
         </BrowserRouter>
       </UsersProvider>
     </Provider>
   </React.StrictMode>
 );
-
-// basename = "/goit-react-hw-08-phonebook";
