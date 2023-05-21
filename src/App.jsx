@@ -1,15 +1,10 @@
 import Router from "./components/Router";
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { selectTheme } from "./redux";
-import { getDesignTokens } from "./theme/getDesignToken";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "./theme/theme";
 
 const App = () => {
-  const theme = useSelector(selectTheme);
-  const themeMode = useMemo(() => createTheme(getDesignTokens(theme)), [theme]);
   return (
-    <ThemeProvider theme={themeMode}>
+    <ThemeProvider theme={theme}>
       <Router />
     </ThemeProvider>
   );

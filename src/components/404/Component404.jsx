@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
-const ErrorPath = () => {
+const Component404 = () => {
   const navigate = useNavigate();
   return (
     <Box
@@ -45,4 +45,4 @@ const ErrorPath = () => {
   );
 };
 
-export default ErrorPath;
+export default Component404;

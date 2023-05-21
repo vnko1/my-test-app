@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import UserCardsList from "../components/userCardsList/UserCardsList";
 import Pagination from "../components/paginationButtons/PaginationButtons";
-import Filters from "../components/filters/Filters";
 import toast from "react-hot-toast";
 import ToastNotification from "../components/notification/ToastNotification";
 import { useUsers } from "../services";
+import { Box } from "@mui/material";
 
 const UsersPage = () => {
   const { isSuccess, isError, error } = useUsers();
@@ -20,12 +20,10 @@ const UsersPage = () => {
   return (
     <>
       {isSuccess && (
-        <>
-          <Filters />
+        <Box>
           <UserCardsList />
           <Pagination />
-          <ToastNotification />
-        </>
+        </Box>
       )}
       <ToastNotification />
     </>

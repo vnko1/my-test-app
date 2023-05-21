@@ -41,7 +41,9 @@ const Filters = () => {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
-        sx={{ fontFamily: "Montserrat", fontSize: 18, color: "#373737" }}
+        sx={{
+          fontSize: 18,
+        }}
       >
         show {menuTitle}
       </Button>
