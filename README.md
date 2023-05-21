@@ -12,6 +12,7 @@ This project implements the functionality of tracking and saving the status of t
 - Return to the initial state when you press the "Follow" button again.
 - Displaying the number of followers and changing them when subscribing and unsubscribing.
 - Filtering projects by subscription (show all, show only "Follow", show only "Following").
+- Save subscription status flags in the browser's local storage.
 
 ## TECHNOLOGY STACK
 
