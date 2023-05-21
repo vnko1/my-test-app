@@ -9,8 +9,8 @@ export const usersApi = createApi({
   tagTypes: ["Users"],
   endpoints: (build) => ({
     fetchUsers: build.query({
-      query: ({ page = 1, query = "" }) =>
-        `users?p=${page < 1 ? 1 : page}&l=${PAGELIMIT}&filter=${query}`,
+      query: ({ page = 1, queryType = "" }) =>
+        `users?p=${page < 1 ? 1 : page}&l=${PAGELIMIT}${queryType}`,
       providesTags: (result) =>
         result
           ? [

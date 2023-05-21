@@ -1,15 +1,15 @@
-import { useUsers } from "../../services";
-import Stack from "@mui/material/Stack";
 import UserCard from "../userCard/UserCard";
-import { Fade } from "@mui/material";
+import Fade from "@mui/material/Fade";
 import Loader from "../loader/Loader";
+import Grid from "@mui/material/Unstable_Grid2";
+import { useUsers } from "../../services";
 
 const UserCardsList = () => {
   const { data, isSuccess, isFetching } = useUsers();
   const renderItem = () => {
     return data.users.map(
       ({ id, follower, avatar, tweets, isFollow, user }) => (
-        <li key={id}>
+        <Grid xs={2} sm={4} md={4} component="li" key={id}>
           <UserCard
             follower={follower}
             id={id}
@@ -18,22 +18,22 @@ const UserCardsList = () => {
             isFollow={isFollow}
             user={user}
           />
-        </li>
+        </Grid>
       )
     );
   };
   return (
     <>
       <Fade in={isSuccess} appear={true} timeout={500}>
-        <Stack
-          component="ul"
-          direction="row"
+        <Grid
+          container
           justifyContent="center"
-          alignItems="center"
-          spacing={10}
+          component="ul"
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
         >
           {isSuccess && renderItem()}
-        </Stack>
+        </Grid>
       </Fade>
       <Loader isFetching={isFetching} />
     </>

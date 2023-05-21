@@ -2,13 +2,13 @@ import { useState } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { FILTERMODE, useUsers } from "../../services";
+import { QUERYTYPE, useUsers } from "../../services";
 import { Box } from "@mui/material";
 
 const Filters = () => {
-  const { setQuery, setPage } = useUsers();
+  const { setQueryType, setPage } = useUsers();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [menuTitle, setMenuTitle] = useState(FILTERMODE.all);
+  const [menuTitle, setMenuTitle] = useState(QUERYTYPE.all.title);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -19,17 +19,17 @@ const Filters = () => {
     setAnchorEl(null);
     setPage(1);
 
-    if (id === FILTERMODE.all) {
-      setQuery("");
-      setMenuTitle(FILTERMODE.all);
+    if (id === QUERYTYPE.all.title) {
+      setQueryType(QUERYTYPE.all.mode);
+      setMenuTitle(QUERYTYPE.all.title);
     }
-    if (id === FILTERMODE.follow) {
-      setQuery(false);
-      setMenuTitle(FILTERMODE.follow);
+    if (id === QUERYTYPE.follow.title) {
+      setQueryType(QUERYTYPE.follow.mode);
+      setMenuTitle(QUERYTYPE.follow.title);
     }
-    if (id === FILTERMODE.following) {
-      setQuery(true);
-      setMenuTitle(FILTERMODE.following);
+    if (id === QUERYTYPE.following.title) {
+      setQueryType(QUERYTYPE.following.mode);
+      setMenuTitle(QUERYTYPE.following.title);
     }
   };
 

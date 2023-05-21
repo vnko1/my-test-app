@@ -2,15 +2,16 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { UsersContext } from "../services/contextFunctions";
 import { useFetchUsersQuery } from "../redux/index";
+import { QUERYTYPE } from "../services";
 
 const UsersProvider = ({ children }) => {
-  const [query, setQuery] = useState("");
+  const [queryType, setQueryType] = useState(QUERYTYPE.all.mode);
   const [page, setPage] = useState(1);
 
   const { data, isSuccess, isFetching, isError, error, isLoading } =
     useFetchUsersQuery({
       page,
-      query,
+      queryType,
     });
 
   return (
@@ -18,7 +19,7 @@ const UsersProvider = ({ children }) => {
       value={{
         page,
         setPage,
-        setQuery,
+        setQueryType,
         data,
         isSuccess,
         isFetching,

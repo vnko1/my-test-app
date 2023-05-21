@@ -3,8 +3,8 @@ import UserCardsList from "../components/userCardsList/UserCardsList";
 import Pagination from "../components/paginationButtons/PaginationButtons";
 import Filters from "../components/filters/Filters";
 import toast from "react-hot-toast";
-import { useUsers } from "../services";
 import ToastNotification from "../components/notification/ToastNotification";
+import { useUsers } from "../services";
 
 const UsersPage = () => {
   const { isSuccess, isError, error } = useUsers();

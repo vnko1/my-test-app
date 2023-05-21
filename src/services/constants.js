@@ -1,7 +1,15 @@
-const PAGELIMIT = 3;
-const FILTERMODE = {
-  all: "all",
-  follow: "follow",
-  following: "following",
+const PAGELIMIT = 6;
+
+const QUERYTYPE = {
+  all: { title: "all", mode: "" },
+  follow: {
+    title: "follow",
+    mode: "&filter=false",
+  },
+  following: {
+    title: "following",
+    mode: "&filter=true",
+  },
 };
-export { PAGELIMIT, FILTERMODE };
+
+export { PAGELIMIT, QUERYTYPE };

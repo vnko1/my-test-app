@@ -1,3 +1,3 @@
 export { useUsers } from "./contextFunctions";
 export { formatData } from "./functions";
-export { PAGELIMIT, FILTERMODE } from "./constants";
+export { PAGELIMIT, QUERYTYPE } from "./constants";
