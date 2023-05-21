@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
-const Component404 = () => {
+const ErrorPath = () => {
   const navigate = useNavigate();
   return (
     <Box
@@ -48,4 +48,4 @@ const Component404 = () => {
   );
 };
 
-export default Component404;
+export default ErrorPath;
