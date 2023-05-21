@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistStor}>
         <UsersProvider>
-          <BrowserRouter>
+          <BrowserRouter basename="/my-test-app/">
             <App />
           </BrowserRouter>
         </UsersProvider>
@@ -21,5 +21,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </Provider>
   </React.StrictMode>
 );
-
-// basename = "/my-test-app/";
