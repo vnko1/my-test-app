@@ -1,4 +1,4 @@
-import UserCard from "../userCard/TweetCard";
+import TweetCard from "../tweetCard/TweetCard";
 import Fade from "@mui/material/Fade";
 import Loader from "../loader/Loader";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -12,7 +12,7 @@ const UserCardsList = () => {
     return data.tweets.map(
       ({ id, follower, avatar, tweets, isFollow, user }) => (
         <Grid xs={2} sm={4} md={4} component="li" key={id}>
-          <UserCard
+          <TweetCard
             follower={follower}
             id={id}
             avatar={avatar}

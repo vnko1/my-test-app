@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { PAGELIMIT } from "../../services";
 
 export const tweetsApi = createApi({
-  reducerPath: "tweets",
+  reducerPath: "tweetsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://644fa705ba9f39c6ab68c233.mockapi.io/",
   }),

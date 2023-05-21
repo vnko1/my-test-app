@@ -1,12 +1,14 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { UsersContext } from "../services/contextFunctions";
-import { useFetchTweetsQuery } from "../redux/index";
+import { selectTweetsId, useFetchTweetsQuery } from "../redux/index";
 import { QUERYTYPE } from "../services";
+import { useSelector } from "react-redux";
 
 const UsersProvider = ({ children }) => {
   const [queryType, setQueryType] = useState(QUERYTYPE.all);
   const [page, setPage] = useState(1);
+  const tweetsId = useSelector(selectTweetsId);
 
   const {
     data,
@@ -39,6 +41,7 @@ const UsersProvider = ({ children }) => {
         error,
         isUninitialized,
         endpointName,
+        tweetsId,
       }}
     >
       {children}

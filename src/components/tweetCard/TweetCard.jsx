@@ -1,7 +1,11 @@
 import PropTypes from "prop-types";
 import { useEffect, useMemo, useState } from "react";
-import { useUpdateTweetMutation } from "../../redux/index";
-import { formatData } from "../../services";
+import {
+  deleteTweetId,
+  addTweetId,
+  useUpdateTweetMutation,
+} from "../../redux/index";
+import { formatData, useUsers } from "../../services";
 import {
   Container,
   ImageWrapper,
@@ -12,17 +16,29 @@ import {
   Button,
 } from "./TweetCard.styled";
 import LogoIcon from "../svgComponents/LogoIcon";
+import { useDispatch } from "react-redux";
 
-const UserCard = ({ follower, id, avatar, tweets, isFollow, user }) => {
+const TweetCard = ({ follower, id, avatar, tweets, isFollow, user }) => {
   const [isFollowing, setIsFollowing] = useState(isFollow);
   const [followersValue, setFollowersValue] = useState(follower);
   const [trigger, { isFetching }] = useUpdateTweetMutation();
 
-  const onHandleClick = () => {
-    setFollowersValue((state) => (isFollowing ? (state -= 1) : (state += 1)));
-    setIsFollowing((state) => !state);
-  };
+  // ===================
+  const { tweetsId } = useUsers();
 
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   if (following) dispatch(deleteTweetId(id));
+  //   if (!following) dispatch(addTweetId(id));
+  // }, [dispatch, follow, following, id]);
+
+  const follow = useMemo(
+    () => tweetsId.some((tweet) => tweet === id),
+    [id, tweetsId]
+  );
+
+  // ================
   useEffect(() => {
     if (isFollowing !== isFollow) {
       trigger({
@@ -31,6 +47,14 @@ const UserCard = ({ follower, id, avatar, tweets, isFollow, user }) => {
       });
     }
   }, [followersValue, id, isFollow, isFollowing, trigger]);
+
+  const onHandleClick = () => {
+    setFollowersValue((state) => (isFollowing ? (state -= 1) : (state += 1)));
+    setIsFollowing((state) => !state);
+    // ===================================
+    if (follow) dispatch(deleteTweetId(id));
+    if (!follow) dispatch(addTweetId(id));
+  };
 
   const formatedFollowersValue = useMemo(
     () => formatData(followersValue),
@@ -60,7 +84,7 @@ const UserCard = ({ follower, id, avatar, tweets, isFollow, user }) => {
   );
 };
 
-UserCard.propTypes = {
+TweetCard.propTypes = {
   follower: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
@@ -69,4 +93,4 @@ UserCard.propTypes = {
   user: PropTypes.string,
 };
 
-export default UserCard;
+export default TweetCard;
