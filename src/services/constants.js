@@ -1,14 +1,12 @@
 const PAGELIMIT = 3;
 
 const QUERYTYPE = {
-  all: { title: "all", mode: "" },
+  all: { title: "all" },
   follow: {
     title: "follow",
-    mode: "&filter=false",
   },
   following: {
     title: "following",
-    mode: "&filter=true",
   },
 };
 

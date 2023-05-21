@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import { QUERYTYPE, useUsers } from "../../services";
 
 const Filters = () => {
-  const { setQueryType, setPage } = useUsers();
+  const { setQueryType } = useUsers();
   const [anchorEl, setAnchorEl] = useState(null);
   const [menuTitle, setMenuTitle] = useState(QUERYTYPE.all.title);
   const open = Boolean(anchorEl);
@@ -17,7 +17,6 @@ const Filters = () => {
 
   const handleClose = ({ target: { id } }) => {
     setAnchorEl(null);
-    setPage(1);
 
     if (id === QUERYTYPE.all.title) {
       setQueryType(QUERYTYPE.all);

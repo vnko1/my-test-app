@@ -20,10 +20,7 @@ const UsersProvider = ({ children }) => {
     isLoading,
     isUninitialized,
     endpointName,
-  } = useFetchTweetsQuery({
-    page,
-    queryType,
-  });
+  } = useFetchTweetsQuery(page);
 
   return (
     <UsersContext.Provider

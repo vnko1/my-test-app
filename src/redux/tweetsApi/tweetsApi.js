@@ -9,19 +9,13 @@ export const tweetsApi = createApi({
   tagTypes: ["Tweets"],
   endpoints: (build) => ({
     fetchTweets: build.query({
-      query: ({ page = 1, queryType = "" }) =>
-        `tweets?p=${page < 1 ? 1 : page}&l=${PAGELIMIT}${queryType.mode}`,
-
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.tweets.map(({ id }) => ({ type: "Tweets", id })),
-              { type: "Tweets", id: "PARTIAL-LIST" },
-            ]
-          : [{ type: "Tweets", id: "PARTIAL-LIST" }],
-
+      query: (page = 1) => `tweets?p=${page}&l=${PAGELIMIT}`,
       serializeQueryArgs: ({ endpointName }) => endpointName,
+      providesTags: ["Tweets"],
 
+      merge: (currentCache, newItems) => {
+        currentCache.tweets.push(...newItems.tweets);
+      },
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
       },
