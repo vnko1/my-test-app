@@ -10,7 +10,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { usersApi } from "./usersApi/usersApi";
+import { tweetsApi } from "./tweetsApi/tweetsApi";
 import { themeReducer } from "./themeReducer/themeSlice";
 
 const themePersistConfig = {
@@ -24,7 +24,7 @@ const themePersistReducer = persistReducer(themePersistConfig, themeReducer);
 
 export const store = configureStore({
   reducer: {
-    [usersApi.reducerPath]: usersApi.reducer,
+    [tweetsApi.reducerPath]: tweetsApi.reducer,
     theme: themePersistReducer,
   },
   middleware: (getDefaultMiddleware) => [
@@ -33,7 +33,7 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-    usersApi.middleware,
+    tweetsApi.middleware,
   ],
 });
 

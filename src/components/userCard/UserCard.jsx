@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect, useMemo, useState } from "react";
-import { useUpdateUserMutation } from "../../redux/index";
+import { useUpdateTweetMutation } from "../../redux/index";
 import { formatData } from "../../services";
 import {
   Container,
@@ -16,7 +16,7 @@ import LogoIcon from "../svgComponents/LogoIcon";
 const UserCard = ({ follower, id, avatar, tweets, isFollow, user }) => {
   const [isFollowing, setIsFollowing] = useState(isFollow);
   const [followersValue, setFollowersValue] = useState(follower);
-  const [trigger] = useUpdateUserMutation();
+  const [trigger] = useUpdateTweetMutation();
 
   const onHandleClick = () => {
     setFollowersValue((state) => (isFollowing ? (state -= 1) : (state += 1)));

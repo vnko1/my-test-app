@@ -9,7 +9,7 @@ const UserCardsList = () => {
   const { data, isSuccess, isFetching } = useUsers();
 
   const renderItem = () => {
-    return data.users.map(
+    return data.tweets.map(
       ({ id, follower, avatar, tweets, isFollow, user }) => (
         <Grid xs={2} sm={4} md={4} component="li" key={id}>
           <UserCard

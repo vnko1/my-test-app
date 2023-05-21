@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { UsersContext } from "../services/contextFunctions";
-import { useFetchUsersQuery } from "../redux/index";
+import { useFetchTweetsQuery } from "../redux/index";
 import { QUERYTYPE } from "../services";
 
 const UsersProvider = ({ children }) => {
@@ -18,7 +18,7 @@ const UsersProvider = ({ children }) => {
     isLoading,
     isUninitialized,
     endpointName,
-  } = useFetchUsersQuery({
+  } = useFetchTweetsQuery({
     page,
     queryType,
   });

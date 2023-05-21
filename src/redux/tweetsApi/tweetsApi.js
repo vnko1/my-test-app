@@ -1,24 +1,24 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { PAGELIMIT } from "../../services";
 
-export const usersApi = createApi({
-  reducerPath: "users",
+export const tweetsApi = createApi({
+  reducerPath: "tweets",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://644fa705ba9f39c6ab68c233.mockapi.io/",
   }),
-  tagTypes: ["Users"],
+  tagTypes: ["Tweets"],
   endpoints: (build) => ({
-    fetchUsers: build.query({
+    fetchTweets: build.query({
       query: ({ page = 1, queryType = "" }) =>
-        `users?p=${page < 1 ? 1 : page}&l=${PAGELIMIT}${queryType.mode}`,
+        `tweets?p=${page < 1 ? 1 : page}&l=${PAGELIMIT}${queryType.mode}`,
 
       providesTags: (result) =>
         result
           ? [
-              ...result.users.map(({ id }) => ({ type: "Users", id })),
-              { type: "Users", id: "PARTIAL-LIST" },
+              ...result.tweets.map(({ id }) => ({ type: "Tweets", id })),
+              { type: "Tweets", id: "PARTIAL-LIST" },
             ]
-          : [{ type: "Users", id: "PARTIAL-LIST" }],
+          : [{ type: "Tweets", id: "PARTIAL-LIST" }],
 
       serializeQueryArgs: ({ endpointName }) => endpointName,
 
@@ -27,19 +27,19 @@ export const usersApi = createApi({
       },
     }),
 
-    updateUser: build.mutation({
+    updateTweet: build.mutation({
       query: ({ id, data }) => ({
-        url: `users/${id}`,
+        url: `tweets/${id}`,
         method: "PUT",
         body: data,
       }),
 
       invalidatesTags: (result, error, id) => [
-        { type: "Users", id },
-        { type: "Users", id: "PARTIAL-LIST" },
+        { type: "Tweets", id },
+        { type: "Tweets", id: "PARTIAL-LIST" },
       ],
     }),
   }),
 });
 
-export const { useFetchUsersQuery, useUpdateUserMutation } = usersApi;
+export const { useFetchTweetsQuery, useUpdateTweetMutation } = tweetsApi;
