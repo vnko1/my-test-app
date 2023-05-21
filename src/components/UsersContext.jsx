@@ -5,7 +5,7 @@ import { useFetchUsersQuery } from "../redux/index";
 import { QUERYTYPE } from "../services";
 
 const UsersProvider = ({ children }) => {
-  const [queryType, setQueryType] = useState(QUERYTYPE.all.mode);
+  const [queryType, setQueryType] = useState(QUERYTYPE.all);
   const [page, setPage] = useState(1);
 
   const {
@@ -28,6 +28,7 @@ const UsersProvider = ({ children }) => {
       value={{
         page,
         setPage,
+        queryType,
         setQueryType,
         data,
         currentData,

@@ -6,7 +6,7 @@ import QueryMessage from "../queryMessage/QueryMessage";
 import { useUsers } from "../../services";
 
 const UserCardsList = () => {
-  const { data, isSuccess } = useUsers();
+  const { data, isSuccess, isFetching } = useUsers();
 
   const renderItem = () => {
     return data.users.map(
@@ -25,7 +25,7 @@ const UserCardsList = () => {
     );
   };
 
-  if (!data?.count) return <QueryMessage />;
+  if (!data?.count && !isFetching) return <QueryMessage />;
   return (
     <>
       <Fade in={isSuccess} appear={true} timeout={500}>

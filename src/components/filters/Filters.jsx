@@ -20,15 +20,15 @@ const Filters = () => {
     setPage(1);
 
     if (id === QUERYTYPE.all.title) {
-      setQueryType(QUERYTYPE.all.mode);
+      setQueryType(QUERYTYPE.all);
       setMenuTitle(QUERYTYPE.all.title);
     }
     if (id === QUERYTYPE.follow.title) {
-      setQueryType(QUERYTYPE.follow.mode);
+      setQueryType(QUERYTYPE.follow);
       setMenuTitle(QUERYTYPE.follow.title);
     }
     if (id === QUERYTYPE.following.title) {
-      setQueryType(QUERYTYPE.following.mode);
+      setQueryType(QUERYTYPE.following);
       setMenuTitle(QUERYTYPE.following.title);
     }
   };

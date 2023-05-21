@@ -1,5 +1,9 @@
+import { useUsers } from "../../services";
+
 const QueryMessage = () => {
-  return <p>Nothing found</p>;
+  const { queryType } = useUsers();
+
+  return <p>Nothing found in {queryType.title}!</p>;
 };
 
 export default QueryMessage;
