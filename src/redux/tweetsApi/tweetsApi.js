@@ -12,7 +12,6 @@ export const tweetsApi = createApi({
       query: (page = 1) => `tweets?p=${page}&l=${PAGELIMIT}`,
       serializeQueryArgs: ({ endpointName }) => endpointName,
       providesTags: ["Tweets"],
-
       merge: (currentCache, newItems) => {
         currentCache.tweets.push(...newItems.tweets);
       },
@@ -27,7 +26,6 @@ export const tweetsApi = createApi({
         method: "PUT",
         body: data,
       }),
-
       invalidatesTags: (result, error, id) => [
         { type: "Tweets", id },
         { type: "Tweets", id: "PARTIAL-LIST" },

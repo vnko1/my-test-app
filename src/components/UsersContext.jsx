@@ -10,6 +10,7 @@ const UsersProvider = ({ children }) => {
   const [page, setPage] = useState(1);
 
   const tweetsId = useSelector(selectTweetsId);
+  console.log(tweetsId);
 
   const {
     data,
