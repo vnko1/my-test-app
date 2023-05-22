@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   deleteTweetId,
   addTweetId,
@@ -20,12 +20,20 @@ import { useDispatch } from "react-redux";
 
 const TweetCard = ({ follower, id, avatar, tweets, user }) => {
   const [trigger, { isFetching }] = useUpdateTweetMutation();
+  const [isFollowing, setIsFollowing] = useState(false);
   const [followerQuantity, setFollowerQuantity] = useState(follower);
   const { tweetsId } = useUsers();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    setIsFollowing(tweetsId.some((tweet) => tweet === id));
+  }, [id, tweetsId]);
+
   const onHandleClick = () => {
-    const followersValue = isFollowing ? follower - 1 : follower + 1;
+    const followersValue = isFollowing
+      ? followerQuantity - 1
+      : followerQuantity + 1;
+
     setFollowerQuantity(followersValue);
     if (isFollowing) dispatch(deleteTweetId(id));
     if (!isFollowing) dispatch(addTweetId(id));
@@ -34,11 +42,6 @@ const TweetCard = ({ follower, id, avatar, tweets, user }) => {
       data: { follower: followersValue },
     });
   };
-
-  const isFollowing = useMemo(
-    () => tweetsId.some((tweet) => tweet === id),
-    [id, tweetsId]
-  );
 
   const formatedFollowersValue = useMemo(
     () => formatData(followerQuantity),
