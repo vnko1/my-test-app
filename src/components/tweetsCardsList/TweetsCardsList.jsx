@@ -50,7 +50,6 @@ const UserCardsList = () => {
       <Fade in={isSuccess} appear={true} timeout={500}>
         <Grid
           container
-          // justifyContent="center"
           component="ul"
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
