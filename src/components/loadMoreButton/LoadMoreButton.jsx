@@ -1,14 +1,17 @@
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import { useUsers } from "../../services";
+import { PAGELIMIT, useUsers } from "../../services";
 
 const LoadMoreBtn = () => {
-  const { setPage, isFetching, renderTweets } = useUsers();
+  const { setPage, isFetching, renderTweets, page } = useUsers();
 
-  const disabled = !renderTweets.length;
+  const disabled =
+    PAGELIMIT * page >= renderTweets.length - (renderTweets.length % 2);
+
   const onHandleCLick = () => {
     setPage((state) => (state += 1));
   };
+
   return (
     <Container
       maxWidth="sm"

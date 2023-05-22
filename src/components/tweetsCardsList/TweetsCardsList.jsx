@@ -1,11 +1,11 @@
-import { useCallback, useEffect } from "react";
-import { animateScroll as scroll } from "react-scroll";
+import { useEffect, useMemo } from "react";
+
 import TweetCard from "../tweetCard/TweetCard";
 import Fade from "@mui/material/Fade";
 import Grid from "@mui/material/Unstable_Grid2";
 import QueryMessage from "../queryMessage/QueryMessage";
 
-import { QUERYTYPE, useUsers, PAGELIMIT } from "../../services";
+import { useUsers, PAGELIMIT, filtredTweets } from "../../services";
 
 const UserCardsList = () => {
   const {
@@ -19,27 +19,19 @@ const UserCardsList = () => {
     setRenderTweets,
   } = useUsers();
 
-  const filtredTweets = useCallback(() => {
-    if (queryType.title === QUERYTYPE.all.title) {
-      return data.tweets.slice(page * PAGELIMIT, page * PAGELIMIT + PAGELIMIT);
-    }
-    if (queryType.title === QUERYTYPE.follow.title) {
-      return data.tweets
-        .filter((el) => !tweetsId.includes(el.id))
-        .slice(page * PAGELIMIT, page * PAGELIMIT + PAGELIMIT);
-    }
-    if (queryType.title === QUERYTYPE.following.title) {
-      return data.tweets
-        .filter((el) => tweetsId.includes(el.id))
-        .slice(page * PAGELIMIT, page * PAGELIMIT + PAGELIMIT);
-    }
-  }, [data.tweets, page, queryType.title, tweetsId]);
+  const filter = useMemo(
+    () => filtredTweets(queryType, data, tweetsId),
+    [data, queryType, tweetsId]
+  );
 
   useEffect(() => {
-    if (!page) setRenderTweets(filtredTweets());
-    else setRenderTweets((state) => [...state, ...filtredTweets()]);
-    scroll.scrollToBottom();
-  }, [filtredTweets, page, setRenderTweets]);
+    const newTweets = filter.slice(
+      page * PAGELIMIT,
+      page * PAGELIMIT + PAGELIMIT
+    );
+    if (!page) setRenderTweets(newTweets);
+    else setRenderTweets((state) => [...state, ...newTweets]);
+  }, [filter, page, setRenderTweets]);
 
   const renderItem = () => {
     return renderTweets.map(({ id, follower, avatar, tweets, user }) => (
@@ -65,7 +57,11 @@ const UserCardsList = () => {
           columns={{ xs: 4, sm: 8, md: 12 }}
           sx={{ p: 0 }}
         >
-          {renderTweets.length && !isFetching ? renderItem() : <QueryMessage />}
+          {!!renderTweets.length && !isFetching ? (
+            renderItem()
+          ) : (
+            <QueryMessage />
+          )}
         </Grid>
       </Fade>
     </>

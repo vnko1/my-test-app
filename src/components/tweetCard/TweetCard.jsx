@@ -34,9 +34,9 @@ const TweetCard = ({ follower, id, avatar, tweets, user }) => {
       ? followerQuantity - 1
       : followerQuantity + 1;
 
-    setFollowerQuantity(followersValue);
     if (isFollowing) dispatch(deleteTweetId(id));
     if (!isFollowing) dispatch(addTweetId(id));
+    setFollowerQuantity(followersValue);
     trigger({
       id,
       data: { follower: followersValue },

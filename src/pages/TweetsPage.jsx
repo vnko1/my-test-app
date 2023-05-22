@@ -8,6 +8,7 @@ import ToastNotification from "../components/notification/ToastNotification";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import { animateScroll as scroll } from "react-scroll";
 import LoadMoreBtn from "../components/loadMoreButton/LoadMoreButton";
 import Loader from "../components/loader/Loader";
 
@@ -53,7 +54,7 @@ const UsersPage = () => {
           >
             <ArrowCircleUpIcon fontSize="large" />
           </IconButton>
-          {renderTweets.length && <LoadMoreBtn />}
+          {!!renderTweets.length && <LoadMoreBtn />}
         </>
       )}
       <Loader />
