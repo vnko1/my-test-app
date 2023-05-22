@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect, useMemo, useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   deleteTweetId,
   addTweetId,
@@ -16,7 +17,6 @@ import {
   Button,
 } from "./TweetCard.styled";
 import LogoIcon from "../svgComponents/LogoIcon";
-import { useDispatch } from "react-redux";
 
 const TweetCard = ({ follower, id, avatar, tweets, user }) => {
   const [trigger, { isFetching }] = useUpdateTweetMutation();
@@ -34,9 +34,9 @@ const TweetCard = ({ follower, id, avatar, tweets, user }) => {
       ? followerQuantity - 1
       : followerQuantity + 1;
 
-    setFollowerQuantity(followersValue);
     if (isFollowing) dispatch(deleteTweetId(id));
     if (!isFollowing) dispatch(addTweetId(id));
+    setFollowerQuantity(followersValue);
     trigger({
       id,
       data: { follower: followersValue },

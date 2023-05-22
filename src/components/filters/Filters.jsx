@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import { QUERYTYPE, useUsers } from "../../services";
 
 const Filters = () => {
-  const { setQueryType } = useUsers();
+  const { setQueryType, setPage } = useUsers();
   const [anchorEl, setAnchorEl] = useState(null);
   const [menuTitle, setMenuTitle] = useState(QUERYTYPE.all.title);
   const open = Boolean(anchorEl);
@@ -30,6 +30,7 @@ const Filters = () => {
       setQueryType(QUERYTYPE.following);
       setMenuTitle(QUERYTYPE.following.title);
     }
+    setPage(0);
   };
 
   return (

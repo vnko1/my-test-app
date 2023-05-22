@@ -6,11 +6,16 @@ import TweetsCardsList from "../components/tweetsCardsList/TweetsCardsList";
 import toast from "react-hot-toast";
 import ToastNotification from "../components/notification/ToastNotification";
 import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import { animateScroll as scroll } from "react-scroll";
+import LoadMoreBtn from "../components/loadMoreButton/LoadMoreButton";
+import Loader from "../components/loader/Loader";
 
 import { useUsers } from "../services";
 
 const UsersPage = () => {
-  const { isSuccess, isError, error } = useUsers();
+  const { isSuccess, isError, error, renderTweets } = useUsers();
 
   useEffect(() => {
     if (isError && error?.status === 404) {
@@ -37,10 +42,22 @@ const UsersPage = () => {
         GO HOME
       </Link>
       {isSuccess && (
-        <Box sx={{ mt: 2 }}>
-          <TweetsCardsList />
-        </Box>
+        <>
+          <Box sx={{ mt: 2 }}>
+            <TweetsCardsList />
+          </Box>
+          <IconButton
+            onClick={() => scroll.scrollToTop()}
+            size="large"
+            color="primary"
+            sx={{ position: "fixed", right: 0, bottom: 120, zIndex: 2000 }}
+          >
+            <ArrowCircleUpIcon fontSize="large" />
+          </IconButton>
+          {!!renderTweets.length && <LoadMoreBtn />}
+        </>
       )}
+      <Loader />
       <ToastNotification />
     </Container>
   );

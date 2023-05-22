@@ -1,36 +1,40 @@
-import { useCallback, useEffect } from "react";
-import { animateScroll as scroll } from "react-scroll";
+import { useEffect, useMemo } from "react";
 import TweetCard from "../tweetCard/TweetCard";
 import Fade from "@mui/material/Fade";
-import Loader from "../loader/Loader";
 import Grid from "@mui/material/Unstable_Grid2";
 import QueryMessage from "../queryMessage/QueryMessage";
-import { QUERYTYPE, useUsers } from "../../services";
-import LoadMoreBtn from "../loadMoreButton/LoadMoreButton";
-import IconButton from "@mui/material/IconButton";
-import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import { useUsers, PAGELIMIT, filtredTweets } from "../../services";
 
 const UserCardsList = () => {
-  const { data, isSuccess, tweetsId, queryType } = useUsers();
+  const {
+    data,
+    isSuccess,
+    tweetsId,
+    queryType,
+    page,
+    isFetching,
+    renderTweets,
+    setRenderTweets,
+    setTotalCount,
+  } = useUsers();
 
-  const filtredTweets = useCallback(() => {
-    if (queryType.title === QUERYTYPE.all.title) {
-      return data.tweets;
-    }
-    if (queryType.title === QUERYTYPE.follow.title) {
-      return data.tweets.filter((el) => !tweetsId.includes(el.id));
-    }
-    if (queryType.title === QUERYTYPE.following.title) {
-      return data.tweets.filter((el) => tweetsId.includes(el.id));
-    }
-  }, [data, queryType.title, tweetsId]);
+  const { tweetsData, total } = useMemo(
+    () => filtredTweets(queryType, data, tweetsId),
+    [data, queryType, tweetsId]
+  );
 
   useEffect(() => {
-    scroll.scrollToBottom();
-  }, [data.tweets]);
+    const newTweets = tweetsData.slice(
+      page * PAGELIMIT,
+      page * PAGELIMIT + PAGELIMIT
+    );
+    setTotalCount(total);
+    if (!page) setRenderTweets(newTweets);
+    else setRenderTweets((state) => [...state, ...newTweets]);
+  }, [page, setRenderTweets, setTotalCount, total, tweetsData]);
 
   const renderItem = () => {
-    return filtredTweets().map(({ id, follower, avatar, tweets, user }) => (
+    return renderTweets.map(({ id, follower, avatar, tweets, user }) => (
       <Grid xs={2} sm={4} md={4} component="li" key={id}>
         <TweetCard
           follower={follower}
@@ -43,11 +47,9 @@ const UserCardsList = () => {
     ));
   };
 
-  if (!filtredTweets().length && isSuccess) return <QueryMessage />;
-
   return (
     <>
-      <Fade in={isSuccess} appear={true} timeout={500}>
+      <Fade in={isSuccess} appear={true} timeout={1000}>
         <Grid
           container
           component="ul"
@@ -55,19 +57,13 @@ const UserCardsList = () => {
           columns={{ xs: 4, sm: 8, md: 12 }}
           sx={{ p: 0 }}
         >
-          {isSuccess && renderItem()}
+          {!!renderTweets.length && !isFetching ? (
+            renderItem()
+          ) : (
+            <QueryMessage />
+          )}
         </Grid>
       </Fade>
-      <IconButton
-        onClick={() => scroll.scrollToTop()}
-        size="large"
-        color="primary"
-        sx={{ position: "fixed", right: 0, bottom: 120, zIndex: 2000 }}
-      >
-        <ArrowCircleUpIcon fontSize="large" />
-      </IconButton>
-      <LoadMoreBtn />
-      <Loader />
     </>
   );
 };

@@ -7,39 +7,32 @@ import { useSelector } from "react-redux";
 
 const UsersProvider = ({ children }) => {
   const [queryType, setQueryType] = useState(QUERYTYPE.all);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
+  const [totalCount, setTotalCount] = useState(null);
 
   const tweetsId = useSelector(selectTweetsId);
-
-  const {
-    data,
-    currentData,
-    isSuccess,
-    isFetching,
-    isError,
-    error,
-    isLoading,
-    isUninitialized,
-    endpointName,
-  } = useFetchTweetsQuery(page);
+  const [renderTweets, setRenderTweets] = useState([]);
+  const { data, isSuccess, isFetching, isError, error, isLoading } =
+    useFetchTweetsQuery();
 
   return (
     <UsersContext.Provider
       value={{
+        renderTweets,
+        setRenderTweets,
+        tweetsId,
         page,
         setPage,
         queryType,
         setQueryType,
         data,
-        currentData,
         isSuccess,
         isFetching,
         isError,
         isLoading,
         error,
-        isUninitialized,
-        endpointName,
-        tweetsId,
+        totalCount,
+        setTotalCount,
       }}
     >
       {children}

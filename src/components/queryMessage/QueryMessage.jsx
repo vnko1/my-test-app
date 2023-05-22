@@ -5,7 +5,7 @@ const QueryMessage = () => {
   const { queryType } = useUsers();
 
   return (
-    <Typography component={"p"} variant="h1">
+    <Typography component={"p"} variant="h1" sx={{ mx: "auto" }}>
       Nothing found in {queryType.title}!
     </Typography>
   );
