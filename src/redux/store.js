@@ -15,9 +15,9 @@ import { tweetsApi } from "./tweetsApi/tweetsApi";
 import { tweetsReducer } from "./tweets/tweetsSlice";
 
 const tweetsPersistConfig = {
-  key: "tweets",
+  key: "id",
   version: 1,
-  whitelist: ["tweets"],
+  whitelist: ["id"],
   storage,
 };
 

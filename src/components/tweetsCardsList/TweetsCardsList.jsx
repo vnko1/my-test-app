@@ -45,31 +45,31 @@ const UserCardsList = () => {
 
   if (!filtredTweets().length && isSuccess) return <QueryMessage />;
 
-  return (
-    <>
-      <Fade in={isSuccess} appear={true} timeout={500}>
-        <Grid
-          container
-          component="ul"
-          spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}
-          sx={{ p: 0 }}
-        >
-          {isSuccess && renderItem()}
-        </Grid>
-      </Fade>
-      <IconButton
-        onClick={() => scroll.scrollToTop()}
-        size="large"
-        color="primary"
-        sx={{ position: "fixed", right: 0, bottom: 120, zIndex: 2000 }}
-      >
-        <ArrowCircleUpIcon fontSize="large" />
-      </IconButton>
-      <LoadMoreBtn />
-      <Loader />
-    </>
-  );
+  // return (
+  //   <>
+  //     <Fade in={isSuccess} appear={true} timeout={500}>
+  //       <Grid
+  //         container
+  //         component="ul"
+  //         spacing={{ xs: 2, md: 3 }}
+  //         columns={{ xs: 4, sm: 8, md: 12 }}
+  //         sx={{ p: 0 }}
+  //       >
+  //         {/* {isSuccess && renderItem()} */}
+  //       </Grid>
+  //     </Fade>
+  //     <IconButton
+  //       onClick={() => scroll.scrollToTop()}
+  //       size="large"
+  //       color="primary"
+  //       sx={{ position: "fixed", right: 0, bottom: 120, zIndex: 2000 }}
+  //     >
+  //       <ArrowCircleUpIcon fontSize="large" />
+  //     </IconButton>
+  //     <LoadMoreBtn />
+  //     <Loader />
+  //   </>
+  // );
 };
 
 export default UserCardsList;

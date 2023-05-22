@@ -4,5 +4,5 @@ export {
   useUpdateTweetMutation,
 } from "./tweetsApi/tweetsApi";
 
-export { selectTweetsId } from "./tweets/selectors";
-export { addTweetId, deleteTweetId } from "./tweets/tweetsSlice";
+export { selectTweetsId, selectTweets } from "./tweets/selectors";
+export { addTweetId, deleteTweetId, getTweets } from "./tweets/tweetsSlice";

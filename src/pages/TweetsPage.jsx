@@ -7,10 +7,13 @@ import toast from "react-hot-toast";
 import ToastNotification from "../components/notification/ToastNotification";
 import Box from "@mui/material/Box";
 
-import { useUsers } from "../services";
+import { useDispatch } from "react-redux";
+import { addToStatePagedData, useUsers } from "../services";
+import { getTweets } from "../redux";
 
 const UsersPage = () => {
-  const { isSuccess, isError, error } = useUsers();
+  const { isSuccess, isError, error, data, page } = useUsers();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isError && error?.status === 404) {
@@ -19,6 +22,10 @@ const UsersPage = () => {
       toast.error(error?.error);
     }
   }, [error, isError]);
+
+  useEffect(() => {
+    addToStatePagedData({ getTweets, dispatch, page, data });
+  }, [data, dispatch, page]);
 
   return (
     <Container maxWidth="lg" sx={{ py: 16, position: "relative" }}>
