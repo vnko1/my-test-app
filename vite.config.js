@@ -5,7 +5,4 @@ import react from "@vitejs/plugin-react-swc";
 export default defineConfig({
   plugins: [react()],
   base: "/my-test-app",
-  server: {
-    open: "/my-test-app",
-  },
 });
