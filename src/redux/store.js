@@ -17,7 +17,6 @@ import { tweetsReducer } from "./tweets/tweetsSlice";
 const tweetsPersistConfig = {
   key: "id",
   version: 1,
-  whitelist: ["id"],
   storage,
 };
 

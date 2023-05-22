@@ -14,8 +14,7 @@ const UsersProvider = ({ children }) => {
   const [page, setPage] = useState(0);
 
   const tweetsId = useSelector(selectTweetsId);
-  // const tweets = useSelector(selectTweets);
-
+  const [renderTweets, setRenderTweets] = useState([]);
   const {
     data,
     currentData,
@@ -31,7 +30,8 @@ const UsersProvider = ({ children }) => {
   return (
     <UsersContext.Provider
       value={{
-        // tweets,
+        renderTweets,
+        setRenderTweets,
         tweetsId,
         page,
         setPage,

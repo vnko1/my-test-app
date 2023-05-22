@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-// import { PAGELIMIT } from "../../services";
 
 export const tweetsApi = createApi({
   reducerPath: "tweetsApi",
@@ -10,16 +9,8 @@ export const tweetsApi = createApi({
   endpoints: (build) => ({
     fetchTweets: build.query({
       query: () => `tweets`,
-      // query: (page = 1) => `tweets?p=${page}&l=${PAGELIMIT}`,
-
       serializeQueryArgs: ({ endpointName }) => endpointName,
       providesTags: ["Tweets"],
-      // merge: (currentCache, newItems) => {
-      //   currentCache.tweets.push(...newItems.tweets);
-      // },
-      // forceRefetch({ currentArg, previousArg }) {
-      //   return currentArg !== previousArg;
-      // },
     }),
 
     updateTweet: build.mutation({

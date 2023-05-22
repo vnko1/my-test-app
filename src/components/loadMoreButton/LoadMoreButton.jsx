@@ -3,9 +3,9 @@ import Container from "@mui/material/Container";
 import { useUsers } from "../../services";
 
 const LoadMoreBtn = () => {
-  const { setPage, data, isFetching } = useUsers();
+  const { setPage, isFetching, renderTweets } = useUsers();
 
-  const disabled = data.tweets.length === data.count || isFetching;
+  const disabled = !renderTweets.length;
   const onHandleCLick = () => {
     setPage((state) => (state += 1));
   };
@@ -16,7 +16,7 @@ const LoadMoreBtn = () => {
     >
       <Button
         onClick={onHandleCLick}
-        // disabled={disabled}
+        disabled={disabled}
         sx={{ mx: "auto" }}
         style={{ display: "block" }}
       >

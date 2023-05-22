@@ -6,14 +6,15 @@ import TweetsCardsList from "../components/tweetsCardsList/TweetsCardsList";
 import toast from "react-hot-toast";
 import ToastNotification from "../components/notification/ToastNotification";
 import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import LoadMoreBtn from "../components/loadMoreButton/LoadMoreButton";
+import Loader from "../components/loader/Loader";
 
-// import { useDispatch } from "react-redux";
 import { useUsers } from "../services";
-// import { getTweets } from "../redux";
 
 const UsersPage = () => {
-  const { isSuccess, isError, error } = useUsers();
-  // const dispatch = useDispatch();
+  const { isSuccess, isError, error, renderTweets } = useUsers();
 
   useEffect(() => {
     if (isError && error?.status === 404) {
@@ -22,10 +23,6 @@ const UsersPage = () => {
       toast.error(error?.error);
     }
   }, [error, isError]);
-
-  // useEffect(() => {
-  //   if (isSuccess) dispatch(getTweets(data.tweets));
-  // }, [data, dispatch, isSuccess]);
 
   return (
     <Container maxWidth="lg" sx={{ py: 16, position: "relative" }}>
@@ -44,10 +41,22 @@ const UsersPage = () => {
         GO HOME
       </Link>
       {isSuccess && (
-        <Box sx={{ mt: 2 }}>
-          <TweetsCardsList />
-        </Box>
+        <>
+          <Box sx={{ mt: 2 }}>
+            <TweetsCardsList />
+          </Box>
+          <IconButton
+            onClick={() => scroll.scrollToTop()}
+            size="large"
+            color="primary"
+            sx={{ position: "fixed", right: 0, bottom: 120, zIndex: 2000 }}
+          >
+            <ArrowCircleUpIcon fontSize="large" />
+          </IconButton>
+          {renderTweets.length && <LoadMoreBtn />}
+        </>
       )}
+      <Loader />
       <ToastNotification />
     </Container>
   );

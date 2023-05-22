@@ -7,7 +7,7 @@ const SharedLayout = () => {
     <>
       <ResponsiveAppBar />
       <Outlet />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
