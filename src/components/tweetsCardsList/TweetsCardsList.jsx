@@ -15,21 +15,23 @@ const UserCardsList = () => {
     isFetching,
     renderTweets,
     setRenderTweets,
+    setTotalCount,
   } = useUsers();
 
-  const filter = useMemo(
+  const { tweetsData, total } = useMemo(
     () => filtredTweets(queryType, data, tweetsId),
     [data, queryType, tweetsId]
   );
 
   useEffect(() => {
-    const newTweets = filter.slice(
+    const newTweets = tweetsData.slice(
       page * PAGELIMIT,
       page * PAGELIMIT + PAGELIMIT
     );
+    setTotalCount(total);
     if (!page) setRenderTweets(newTweets);
     else setRenderTweets((state) => [...state, ...newTweets]);
-  }, [filter, page, setRenderTweets]);
+  }, [page, setRenderTweets, setTotalCount, total, tweetsData]);
 
   const renderItem = () => {
     return renderTweets.map(({ id, follower, avatar, tweets, user }) => (

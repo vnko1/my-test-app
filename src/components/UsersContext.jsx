@@ -1,31 +1,19 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { UsersContext } from "../services/contextFunctions";
-import {
-  // selectTweets,
-  selectTweetsId,
-  useFetchTweetsQuery,
-} from "../redux/index";
+import { selectTweetsId, useFetchTweetsQuery } from "../redux/index";
 import { QUERYTYPE } from "../services";
 import { useSelector } from "react-redux";
 
 const UsersProvider = ({ children }) => {
   const [queryType, setQueryType] = useState(QUERYTYPE.all);
   const [page, setPage] = useState(0);
+  const [totalCount, setTotalCount] = useState(null);
 
   const tweetsId = useSelector(selectTweetsId);
   const [renderTweets, setRenderTweets] = useState([]);
-  const {
-    data,
-    currentData,
-    isSuccess,
-    isFetching,
-    isError,
-    error,
-    isLoading,
-    isUninitialized,
-    endpointName,
-  } = useFetchTweetsQuery();
+  const { data, isSuccess, isFetching, isError, error, isLoading } =
+    useFetchTweetsQuery();
 
   return (
     <UsersContext.Provider
@@ -38,14 +26,13 @@ const UsersProvider = ({ children }) => {
         queryType,
         setQueryType,
         data,
-        currentData,
         isSuccess,
         isFetching,
         isError,
         isLoading,
         error,
-        isUninitialized,
-        endpointName,
+        totalCount,
+        setTotalCount,
       }}
     >
       {children}

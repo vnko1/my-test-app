@@ -1,12 +1,17 @@
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import { PAGELIMIT, useUsers } from "../../services";
+import { useUsers } from "../../services";
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
 
 const LoadMoreBtn = () => {
-  const { setPage, isFetching, renderTweets, page } = useUsers();
+  const { setPage, isFetching, renderTweets, totalCount } = useUsers();
 
-  const disabled =
-    PAGELIMIT * page >= renderTweets.length - (renderTweets.length % 2);
+  const disabled = renderTweets.length === totalCount;
+
+  useEffect(() => {
+    if (disabled) toast.error("Oops. Tweets is finished!");
+  }, [disabled]);
 
   const onHandleCLick = () => {
     setPage((state) => (state += 1));
