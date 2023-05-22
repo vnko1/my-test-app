@@ -21,7 +21,7 @@ const UsersPage = () => {
   }, [error, isError]);
 
   return (
-    <Container sx={{ py: 16, position: "relative" }}>
+    <Container maxWidth="lg" sx={{ py: 16, position: "relative" }}>
       <Link
         component={RouterLink}
         to="/"
