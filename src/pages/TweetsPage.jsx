@@ -6,7 +6,7 @@ import TweetsCardsList from "../components/tweetsCardsList/TweetsCardsList";
 import toast from "react-hot-toast";
 import ToastNotification from "../components/notification/ToastNotification";
 import Box from "@mui/material/Box";
-// import LoadMoreBtn from "../components/loadMoreButton/LoadMoreButton";
+
 import { useUsers } from "../services";
 
 const UsersPage = () => {
