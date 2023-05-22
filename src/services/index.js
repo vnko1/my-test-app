@@ -1,3 +1,3 @@
 export { useUsers } from "./contextFunctions";
-export { formatData, addToStatePagedData } from "./functions";
+export { formatData } from "./functions";
 export { PAGELIMIT, QUERYTYPE } from "./constants";

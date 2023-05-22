@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { UsersContext } from "../services/contextFunctions";
 import {
-  selectTweets,
+  // selectTweets,
   selectTweetsId,
   useFetchTweetsQuery,
 } from "../redux/index";
@@ -11,10 +11,10 @@ import { useSelector } from "react-redux";
 
 const UsersProvider = ({ children }) => {
   const [queryType, setQueryType] = useState(QUERYTYPE.all);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
 
   const tweetsId = useSelector(selectTweetsId);
-  const tweets = useSelector(selectTweets);
+  // const tweets = useSelector(selectTweets);
 
   const {
     data,
@@ -31,7 +31,7 @@ const UsersProvider = ({ children }) => {
   return (
     <UsersContext.Provider
       value={{
-        tweets,
+        // tweets,
         tweetsId,
         page,
         setPage,

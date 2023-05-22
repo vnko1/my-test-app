@@ -16,7 +16,7 @@ const LoadMoreBtn = () => {
     >
       <Button
         onClick={onHandleCLick}
-        disabled={disabled}
+        // disabled={disabled}
         sx={{ mx: "auto" }}
         style={{ display: "block" }}
       >

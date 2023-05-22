@@ -24,6 +24,7 @@ const TweetCard = ({ follower, id, avatar, tweets, user }) => {
   const [followerQuantity, setFollowerQuantity] = useState(follower);
   const { tweetsId } = useUsers();
   const dispatch = useDispatch();
+  console.log(tweetsId);
 
   useEffect(() => {
     setIsFollowing(tweetsId.some((tweet) => tweet === id));
