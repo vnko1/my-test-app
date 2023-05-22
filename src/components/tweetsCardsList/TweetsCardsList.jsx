@@ -1,10 +1,8 @@
 import { useEffect, useMemo } from "react";
-
 import TweetCard from "../tweetCard/TweetCard";
 import Fade from "@mui/material/Fade";
 import Grid from "@mui/material/Unstable_Grid2";
 import QueryMessage from "../queryMessage/QueryMessage";
-
 import { useUsers, PAGELIMIT, filtredTweets } from "../../services";
 
 const UserCardsList = () => {
