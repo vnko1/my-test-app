@@ -21,14 +21,20 @@ const UsersPage = () => {
   }, [error, isError]);
 
   return (
-    <Container maxWidth={false} sx={{ maxWidth: 1480, py: 16 }}>
+    <Container sx={{ py: 16, position: "relative" }}>
       <Link
         component={RouterLink}
         to="/"
         underline="hover"
-        sx={{ textTransform: "uppercase" }}
+        sx={{
+          textTransform: "uppercase",
+          position: "fixed",
+          left: 20,
+          top: 70,
+          zIndex: 2000,
+        }}
       >
-        GO BACK
+        GO HOME
       </Link>
       {isSuccess && (
         <Box sx={{ mt: 2 }}>

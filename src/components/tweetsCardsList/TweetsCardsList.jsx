@@ -1,11 +1,14 @@
+import { useCallback, useEffect } from "react";
+import { animateScroll as scroll } from "react-scroll";
 import TweetCard from "../tweetCard/TweetCard";
 import Fade from "@mui/material/Fade";
 import Loader from "../loader/Loader";
 import Grid from "@mui/material/Unstable_Grid2";
 import QueryMessage from "../queryMessage/QueryMessage";
 import { QUERYTYPE, useUsers } from "../../services";
-import { useCallback } from "react";
 import LoadMoreBtn from "../loadMoreButton/LoadMoreButton";
+import IconButton from "@mui/material/IconButton";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 
 const UserCardsList = () => {
   const { data, isSuccess, tweetsId, queryType } = useUsers();
@@ -21,6 +24,10 @@ const UserCardsList = () => {
       return data.tweets.filter((el) => tweetsId.includes(el.id));
     }
   }, [data, queryType.title, tweetsId]);
+
+  useEffect(() => {
+    scroll.scrollToBottom();
+  }, [data.tweets]);
 
   const renderItem = () => {
     return filtredTweets().map(({ id, follower, avatar, tweets, user }) => (
@@ -51,6 +58,14 @@ const UserCardsList = () => {
           {isSuccess && renderItem()}
         </Grid>
       </Fade>
+      <IconButton
+        onClick={() => scroll.scrollToTop()}
+        size="large"
+        color="primary"
+        sx={{ position: "fixed", right: 0, bottom: 120, zIndex: 2000 }}
+      >
+        <ArrowCircleUpIcon fontSize="large" />
+      </IconButton>
       <LoadMoreBtn />
       <Loader />
     </>
